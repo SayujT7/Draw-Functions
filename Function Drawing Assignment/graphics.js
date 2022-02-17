@@ -35,24 +35,50 @@ function circle(x, y, r, mode) {
     }
 }
 
-function semiCirlce(x, y, r, mode) {
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI, false, mode);
+function rect(x, y, w, h, mode) {
     if (mode === "fill") {
-        ctx.fill();
+        ctx.fillRect(x, y, w, h)
     } else if (mode === "stroke") {
-        ctx.stroke();
+        ctx.strokeRect(x, y, w, h);
     }
 }
 
 
-function face() {
+function face(x, y, colorHead, colorEyes) {
     //Draw Head
-    circle(350, 350, 75, "stroke");
+    fill(colorHead)
+    circle(x, y, 75, "fill");
     // Eyes
-    circle(320, 320, 10, "fill");
-    circle(380, 320, 10, "fill");
+    fill(colorEyes);
+    circle(x - 30, y - 20, 10, "fill");
+    circle(x + 30, y - 20, 10, "fill");
     // Nose 
-    
+    line(x + 2, y + 2, x + 20, y + 10);
+    line(x + 20, y + 10, x, y + 20);
     // Mouth
+    line(x - 15, y + 40, x + 25, y + 40);
+}
+
+function robot(x, y, colorHead, colorEyes, colorBody) {
+    //Draw Head (550,150)
+    fill(colorHead)
+    rect(x, y, 75, 75, "fill");
+
+    //Draw Eyes
+    fill(colorEyes)
+    rect(x + 15, y + 20, 10, 10, "fill");
+    rect(x + 50, y + 20, 10, 10, "fill");
+
+    //Draw Body
+    fill(colorBody);
+    rect(x - 40, y + 75, 150, 175, "fill");
+
+    //Draw Arms
+    rect(x - 150, y + 115, 150, 30, "fill");
+    rect(x + 110, y + 115, 110, 30, "fill");
+
+    //Draw Legs
+    rect(x - 20, y + 250, 30, 125, "fill");
+    rect(x + 65, y + 250, 30, 125, "fill");
+
 }
